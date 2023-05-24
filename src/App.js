@@ -37,7 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/items",
         handle: {
-          crumb: () => <Link component={RouterLink} to="items" underline="hover" color="inherit"><p>Items</p></Link>
+          crumb: (() => {
+         // return <Link component={RouterLink} to="items" underline="hover" color="inherit"><p>Items</p></Link>;
+         return ({crumbTitle: "Items"}); 
+        })
         },
         children: [
           {
@@ -58,11 +61,9 @@ const router = createBrowserRouter([
                 loader: itemLoader,
                 handle: {
                   crumb: (data) => {
-                    console.log(data);
-                    if(data != null) {
-    
-                    return (<Link component={RouterLink} to={data.item.id} underline="hover" color="inherit">{data.item.name}</Link>)
-                    }
+                    //return (<Link component={RouterLink} to={data.item.id} underline="hover" color="inherit">{data.item.name}</Link>)
+                    return ({crumbTitle: data.item.name});
+                    
                   }
                 },
               },
@@ -73,11 +74,9 @@ const router = createBrowserRouter([
                   loader: itemLoader,
                   handle: {
                     crumb: (data) => {
-                      console.log(data);
-                     
-      
-                      return (<Link component={RouterLink} to={data.item.id} underline="hover" color="inherit">{"bla"}</Link>)
-                      
+    
+                      //return (<Link component={RouterLink} to={data.item.id} underline="hover" color="inherit">{"bla"}</Link>)
+                      return ({crumbTitle: "edit"});
                     }
                   },
                   

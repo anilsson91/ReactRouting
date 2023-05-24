@@ -12,7 +12,6 @@ export default function RootLayout() {
     <>
     <Navbar/>
     <Breadcrumbs/>
-    <Breadcrumbs2/>
     <Outlet />
     </>
   )
