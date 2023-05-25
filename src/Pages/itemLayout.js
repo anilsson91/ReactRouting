@@ -26,7 +26,7 @@ export default function ItemLayout() {
     }]
 
   return (
-    <Box>
+    <Box sx={{background:"#e8ebf2"}}>
         <Drawer menuItems = {menuItems} content={<Outlet/>}/>
     </Box>
   )

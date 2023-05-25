@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   RouterProvider, Route, Link as RouterLink, useMatches
 } from "react-router-dom";
-
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Root from './routes/Root';
 import Customers, { loader as customersLoader}  from './routes/Customers';
 import Customer,  { loader as customerLoader}   from './routes/Customer';
@@ -25,9 +25,9 @@ import RootLayout from './Pages/rootLayout';
 import EditItem from './Pages/editItem';
 
 import ItemLayout from './Pages/itemLayout';
+import { red } from '@mui/material/colors';
 
-
-
+import { ThemeOptions } from '@mui/material/styles';
 
 const router = createBrowserRouter([
   {
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
               {  
                   path: "/items/:itemId/edit",
                   id:4,
-                  element: <h1>HELLO</h1>,
+                  element: <EditItem/>,
                   loader: itemLoader,
                   handle: {
                     crumb: (data) => {
@@ -95,11 +95,39 @@ const router = createBrowserRouter([
 
 
 
+ const themeOptions = {
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#5893df',
+    },
+    secondary: {
+      main: '#5893df',
+    },
+    background: {
+      default: '#192231',
+      paper: '#24344d',
+    },
+  },
+
+   
+
+    
+};
+
+
+
+const theme = createTheme(
+  themeOptions);
+
+
 
 function App() {
   return (
     <div className="App">
+          <ThemeProvider theme={theme}>
       <RouterProvider router={router} />
+      </ThemeProvider>
     </div>
   );
 }
